@@ -1,0 +1,6 @@
+# Ignore the Go local build directory
+bin/
+pkg/
+
+# Ignore the binary
+main

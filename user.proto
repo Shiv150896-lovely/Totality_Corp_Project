@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "grpc_user_service/generated;generated";
+// option go_package = "generated;generated";
+
+message User {
+    int32 id = 1;
+    string fname = 2;
+    string city = 3;
+    int64 phone = 4;
+    float height = 5;
+    bool married = 6;
+}
+
+message GetUserRequest {
+    int32 id = 1;
+}
+
+message GetUserResponse {
+    User user = 1;
+}
+
+message ListUsersRequest {
+    repeated int32 ids = 1;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+}
+
+message SearchUsersRequest {
+    string city = 1;
+    int64 phone = 2;
+    bool married = 3;
+}
+
+message SearchUsersResponse {
+    repeated User users = 1;
+}
+
+service UserService {
+    rpc GetUser(GetUserRequest) returns (GetUserResponse);
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+    rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
+}
